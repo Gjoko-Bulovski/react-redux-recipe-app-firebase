@@ -1,0 +1,94 @@
+.containerRecipe {
+  background: #fff;
+  padding: 20px;
+  width: 600px;
+  margin: auto;
+  border-radius: 10px;
+}
+
+.formContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.form {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 10px;
+}
+
+.inputGroup {
+  display: grid;
+}
+
+.form input,
+textarea {
+  outline: none;
+  border: 1px solid #d9d9d9;
+  padding: 5px 10px;
+  transition: all 0.2s ease-in-out;
+  border-radius: 4px;
+}
+
+.form input:hover,
+textarea:hover {
+  border: 1px solid rgb(0, 153, 255);
+}
+
+.form input:focus,
+textarea:focus {
+  border: 1px solid #0099ff;
+  box-shadow: 0 0 0 2px rgba(0, 153, 255, 0.2);
+  transition: all 0.2s ease-in-out;
+}
+
+.form label {
+  text-align: start;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.buttonSubmit {
+  background: #0099ff;
+  color: #fff;
+}
+
+.buttonSubmit:hover {
+  background: hsl(204, 100%, 40%);
+}
+
+.buttonSubmit:disabled {
+  cursor: not-allowed;
+  background-color: #f5f5f5;
+  color: rgba(0, 0, 0, 0.25);
+}
+
+.fa-plus-circle {
+  color: #0099ff;
+  transition: all 0.2s ease-in-out;
+}
+
+.fa-plus-circle:hover {
+  color: hsl(204, 100%, 40%);
+}
+
+.ingredientsList {
+  margin: 0;
+  padding: 0;
+  text-align: start;
+  max-height: 150px;
+  overflow-y: scroll;
+}
+
+@media screen and (max-width: 600px) {
+  .containerRecipe {
+    width: 100%;
+  }
+  .formContainer {
+    grid-template-columns: 1fr;
+  }
+  .form {
+    margin: 20px 0px;
+  }
+}

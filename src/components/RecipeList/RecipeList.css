@@ -1,0 +1,38 @@
+.containerRecipeList {
+  display: grid;
+  align-items: center;
+  overflow-x: auto;
+}
+
+.tableWrapper {
+  background: #fff;
+  border-radius: 10px;
+  width: 1320px;
+  margin: auto;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  width: 1280px;
+  margin: auto;
+  background: #fff;
+}
+
+th {
+  text-align: left;
+  padding: 10px;
+}
+
+.iconWrapperRecipeList {
+  width: 1320px;
+  margin: auto;
+  text-align: left;
+  padding: 10px 0px;
+}
+
+@media screen and (max-width: 1320px) {
+  .iconWrapperRecipeList {
+    width: 100%;
+  }
+}

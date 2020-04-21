@@ -1,0 +1,46 @@
+.modalContent {
+  background: #fff;
+  width: 500px;
+  z-index: 101;
+  position: relative;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.modalHeader {
+  padding: 10px 0px;
+  font-weight: 600;
+}
+
+.modalFooter {
+  text-align: right;
+  margin-top: 20px;
+}
+
+.btnCancel {
+  border: 1px solid #000;
+  margin-right: 20px;
+  transition: all 0.2s ease-in-out;
+}
+
+.btnCancel:hover {
+  background: #000;
+  color: #fff;
+}
+
+.btnDelete {
+  border: 1px solid hsl(0, 100%, 50%);
+  background: hsl(0, 100%, 50%);
+  color: #fff;
+  transition: all 0.2s ease-in-out;
+}
+
+.btnDelete:hover {
+  background: hsl(0, 100%, 40%);
+}
+
+@media screen and (max-width: 500px) {
+  .modalContent {
+    width: 100%;
+  }
+}
