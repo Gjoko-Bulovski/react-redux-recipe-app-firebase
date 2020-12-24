@@ -5,7 +5,7 @@ import BackDrop from "../UI/BackDrop/BackDrop";
 import "../ModalDelete/ModalDelete.css";
 import { deleteRecipeAction } from "../../Actions/Actions";
 
-const ModalDelete = ({ deleteRecipe, id, name }) => {
+const ModalDelete = ({ deleteRecipeAction, id, name }) => {
   const [showModal, setModal] = useState(false);
 
   const handleShow = () => setModal(true);
@@ -29,7 +29,10 @@ const ModalDelete = ({ deleteRecipe, id, name }) => {
                 <button onClick={handleHide} className="btnCancel">
                   Cancel
                 </button>
-                <button className="btnDelete" onClick={() => deleteRecipe(id)}>
+                <button
+                  className="btnDelete"
+                  onClick={() => deleteRecipeAction(id)}
+                >
                   Delete
                 </button>
               </div>
@@ -43,7 +46,7 @@ const ModalDelete = ({ deleteRecipe, id, name }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    deleteRecipe: (id) => {
+    deleteRecipeAction: (id) => {
       dispatch(deleteRecipeAction(id));
     },
   };

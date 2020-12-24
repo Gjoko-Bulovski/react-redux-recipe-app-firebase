@@ -3,12 +3,23 @@ import {
   SELECT_RECIPE,
   ADD_RECIPE,
   SET_RECIPES,
+  REDIRECT,
+  ISLOADING,
+  SET_RECIPE,
 } from "../Actions/Actions";
 
 const initalStore = {
   recipes: [],
   selectedRecipe: null,
-  isFetching: true,
+  redirect: false,
+  isLoading: false,
+  recipe: {
+    name: "",
+    source: "",
+    ingredients: [],
+    preparationTime: "",
+    preparationInstructions: "",
+  },
 };
 
 const Reducer = (state = initalStore, action) => {
@@ -17,7 +28,14 @@ const Reducer = (state = initalStore, action) => {
       return {
         ...state,
         recipes: [...action.payload],
-        isFetching: false,
+        redirect: false,
+        recipe: {
+          name: "",
+          source: "",
+          ingredients: [],
+          preparationTime: "",
+          preparationInstructions: "",
+        },
       };
     case ADD_RECIPE:
       return {
@@ -33,6 +51,21 @@ const Reducer = (state = initalStore, action) => {
       return {
         ...state,
         selectedRecipe: action.payload,
+      };
+    case REDIRECT:
+      return {
+        ...state,
+        redirect: action.payload,
+      };
+    case ISLOADING:
+      return {
+        ...state,
+        isLoading: action.payload,
+      };
+    case SET_RECIPE:
+      return {
+        ...state,
+        recipe: action.payload,
       };
     default:
       return state;

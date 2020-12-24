@@ -6,21 +6,18 @@ import Recipe from "../Recipe/Recipe";
 import { fetchRecipesAction } from "../../Actions/Actions";
 import { Spinner } from "../UI/Spinner/Spinner";
 
-const RecipeList = ({ recipes, fetchRecipes, isFetching }) => {
+const RecipeList = ({ recipes, fetchRecipes, isLoading }) => {
   useEffect(() => {
     fetchRecipes();
   }, []);
 
   return (
     <>
-      {isFetching && <Spinner />}
-      <h2>Recipe List</h2>
+      {isLoading && <Spinner />}
+      <h2>Recipes</h2>
       <div className="iconWrapperRecipeList">
-        <Link to="/">
-          <i
-            title="Add new ingredient"
-            className="fas fa-plus-circle fa-2x"
-          ></i>
+        <Link to="/recipes/add">
+          <i title="Add new recipe" className="fas fa-plus-circle fa-2x"></i>
         </Link>
       </div>
       <div className="containerRecipeList">
@@ -62,7 +59,7 @@ const RecipeList = ({ recipes, fetchRecipes, isFetching }) => {
 const mapStateToProps = (state) => {
   return {
     recipes: state.recipes,
-    isFetching: state.isFetching,
+    isLoading: state.isLoading,
   };
 };
 

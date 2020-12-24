@@ -7,18 +7,26 @@
   grid-template-columns: 1fr 1fr;
   width: 600px;
   margin: auto;
+  grid-gap: 10px;
 }
 
 .contentRecipeDetails {
   display: grid;
   align-items: center;
-  justify-content: start;
   grid-gap: 20px;
 }
 
 .innerGroupRecipeDetails {
   display: grid;
   text-align: left;
+  max-height: 357px;
+  overflow-y: scroll;
+}
+
+.innerGroupRecipeDetails_title {
+  position: sticky;
+  top: 0px;
+  background: #fff;
 }
 
 .fa-chevron-left {
@@ -77,5 +85,11 @@
   }
   .iconWrapper {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .containerRecipeDetails {
+    grid-template-columns: 1fr;
   }
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import "./Ingredient.css";
 
-const Ingredient = ({ id, text, weight }) => {
+const Ingredient = ({ id, text, weight, deleteIngredient, btnDelete }) => {
   return (
     <li className="ingredientContainer">
       <div>
@@ -13,6 +13,14 @@ const Ingredient = ({ id, text, weight }) => {
       <div>
         <strong>Weight:</strong> {weight}
       </div>
+      {btnDelete && (
+        <button
+          onClick={() => deleteIngredient(id)}
+          className="ingredient_delete"
+        >
+          Delete
+        </button>
+      )}
     </li>
   );
 };

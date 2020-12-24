@@ -47,3 +47,7 @@ button {
   background-color: #0099ff;
   border-radius: 10px;
 }
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(204, 100%, 40%);
+  border-radius: 10px;
+}

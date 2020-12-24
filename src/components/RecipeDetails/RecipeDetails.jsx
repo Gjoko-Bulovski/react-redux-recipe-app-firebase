@@ -1,20 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import ModalDelete from "../ModalDelete/ModalDelete";
 import "../RecipeDetails/RecipeDetails.css";
 import Ingredient from "../Ingredient/Ingredient";
+import { Spinner } from "../UI/Spinner/Spinner";
+import { fetchRecipeAction, selectRecipeAction } from "../../Actions/Actions";
 
-const RecipeDetails = ({ recipes, selectedRecipe }) => {
-  let updatedSelectedRecipe = recipes.find(
-    (recipe) => recipe.id === selectedRecipe
-  );
+const RecipeDetails = ({
+  match,
+  redirect,
+  isLoading,
+  fetchRecipeAction,
+  recipe,
+  selectRecipeAction,
+}) => {
+  //useEffect
+  useEffect(() => {
+    fetchRecipeAction(match.params.id);
+  }, []);
 
-  if (updatedSelectedRecipe == null)
+  //Recipe is null
+  if (recipe == null) {
     return (
       <div className="detailsEmpty">
         <p>Recipe details are empty</p>
-        <Link to="/recipe-list" className="link">
+        <Link to="/" className="link">
           <i
             title="Back to recipe list"
             className="fas fa-chevron-left fa-2x"
@@ -23,34 +34,32 @@ const RecipeDetails = ({ recipes, selectedRecipe }) => {
         </Link>
       </div>
     );
+  }
 
   return (
     <>
+      {redirect && <Redirect to="/" />}
+      {isLoading && <Spinner />}
       <h2>Recipe Details</h2>
       <div className="iconWrapper">
-        <Link to="/recipe-list">
-          <i
-            title="Back to recipe list"
-            className="fas fa-chevron-left fa-2x"
-          ></i>
+        <Link to="/">
+          <i title="Back to recipes" className="fas fa-chevron-left fa-2x"></i>
         </Link>
       </div>
       <div className="containerRecipeDetails">
         <div className="contentRecipeDetails">
           <div className="innerGroupRecipeDetails">
             <strong>Recipe Name: </strong>
-            {updatedSelectedRecipe.name}
+            {recipe.name}
           </div>
           <div className="innerGroupRecipeDetails">
             <strong>Recipe Source: </strong>
-            {updatedSelectedRecipe.source.length !== 0
-              ? updatedSelectedRecipe.source
-              : "/"}
+            {recipe.source.length !== 0 ? recipe.source : "/"}
           </div>
           <div className="innerGroupRecipeDetails">
             <strong>Ingredients: </strong>
             <ul>
-              {updatedSelectedRecipe.ingredients.map((ingredient) => {
+              {recipe.ingredients.map((ingredient) => {
                 return (
                   <Ingredient
                     key={ingredient.id}
@@ -64,33 +73,51 @@ const RecipeDetails = ({ recipes, selectedRecipe }) => {
           </div>
           <div className="innerGroupRecipeDetails">
             <strong>Preparation Time: </strong>
-            {updatedSelectedRecipe.preparationTime.length !== 0
-              ? updatedSelectedRecipe.preparationTime
-              : "/"}
+            {recipe.preparationTime.length !== 0 ? recipe.preparationTime : "/"}
           </div>
-          <ModalDelete
-            id={updatedSelectedRecipe.id}
-            name={updatedSelectedRecipe.name}
-          />
         </div>
         <div>
           <div className="innerGroupRecipeDetails">
-            <strong>Preparation Instructions: </strong>
-            {updatedSelectedRecipe.preparationInstructions.length !== 0
-              ? updatedSelectedRecipe.preparationInstructions
+            <strong className="innerGroupRecipeDetails_title">
+              Preparation Instructions:{" "}
+            </strong>
+            {recipe.preparationInstructions.length !== 0
+              ? recipe.preparationInstructions
               : "/"}
           </div>
         </div>
+        <Link to={`/recipes/edit/${match.params.id}`}>
+          <button
+            className="btnEdit"
+            onClick={() => selectRecipeAction(match.params.id)}
+          >
+            Edit
+          </button>
+        </Link>
+
+        <ModalDelete id={match.params.id} name={recipe.name} />
       </div>
     </>
   );
 };
 
-const mapStateToProps = (state) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    recipes: state.recipes,
-    selectedRecipe: state.selectedRecipe,
+    fetchRecipeAction: (id) => {
+      dispatch(fetchRecipeAction(id));
+    },
+    selectRecipeAction: (id) => {
+      dispatch(selectRecipeAction(id));
+    },
   };
 };
 
-export default connect(mapStateToProps)(RecipeDetails);
+const mapStateToProps = (state) => {
+  return {
+    redirect: state.redirect,
+    isLoading: state.isLoading,
+    recipe: state.recipe,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RecipeDetails);

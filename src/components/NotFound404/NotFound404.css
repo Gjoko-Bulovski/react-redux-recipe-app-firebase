@@ -1,0 +1,20 @@
+.notFound404_container {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 1fr;
+  width: 600px;
+  margin: auto;
+}
+
+.notFound404_link {
+  color: #0099ff;
+}
+
+@media screen and (max-width: 600px) {
+  .notFound404_container {
+    width: 100%;
+  }
+}

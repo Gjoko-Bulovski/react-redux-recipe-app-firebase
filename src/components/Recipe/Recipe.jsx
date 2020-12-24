@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import ModalDelete from "../ModalDelete/ModalDelete";
 
 const Recipe = ({
-  selectedRecipe,
+  selectRecipeAction,
   id,
   name,
   source,
@@ -40,9 +40,16 @@ const Recipe = ({
           </div>
         </td>
         <td>
-          <Link to="/recipe-details">
-            <button className="btnView" onClick={() => selectedRecipe(id)}>
-              View Details
+          <Link to={`/recipes/view/${id}`}>
+            <button className="btnView" onClick={() => selectRecipeAction(id)}>
+              View
+            </button>
+          </Link>
+        </td>
+        <td>
+          <Link to={`/recipes/edit/${id}`}>
+            <button className="btnEdit" onClick={() => selectRecipeAction(id)}>
+              Edit
             </button>
           </Link>
         </td>
@@ -56,7 +63,7 @@ const Recipe = ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    selectedRecipe: (id) => dispatch(selectRecipeAction(id)),
+    selectRecipeAction: (id) => dispatch(selectRecipeAction(id)),
   };
 };
 

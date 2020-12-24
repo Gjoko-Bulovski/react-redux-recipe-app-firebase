@@ -77,7 +77,7 @@ textarea:focus {
   margin: 0;
   padding: 0;
   text-align: start;
-  max-height: 150px;
+  max-height: 190px;
   overflow-y: scroll;
 }
 

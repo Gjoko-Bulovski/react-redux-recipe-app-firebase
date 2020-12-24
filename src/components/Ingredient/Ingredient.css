@@ -4,4 +4,15 @@
   align-items: center;
   border-bottom: 1px solid #d9d9d9;
   padding: 5px 0px;
+  grid-template-columns: 1fr;
+}
+
+.ingredient_delete {
+  background: hsl(0, 100%, 50%);
+  color: #fff;
+  margin-top: 10px;
+}
+
+.ingredient_delete:hover {
+  background: hsl(0, 100%, 40%);
 }
